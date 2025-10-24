@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề xuất Chương trình Đào tạo AI - Ứng dụng AI trong Cơ quan Nhà nước</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* NextAcademy Brand Colors */
+            --na-primary: #143ce4;
+            --na-secondary: #ec1ca4;
+            --na-accent: #44b454;
+            --na-text-primary: #212121;
+            --na-text-secondary: #757575;
+            --na-background: #FFFFFF;
+            --na-surface: #FAFAFA;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--na-surface) 0%, #F0F8FF 100%);
+            color: var(--na-text-primary);
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--na-primary);
+            border-bottom: 3px solid var(--na-secondary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--na-accent);
+        }
+        .card {
+            background-color: var(--na-background);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--na-accent);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 35px -5px rgb(0 0 0 / 0.15);
+        }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--na-primary);
+            margin-bottom: 1rem;
+        }
+        h4 {
+            color: var(--na-secondary);
+            font-weight: 600;
+        }
+        ul {
+            list-style-position: inside;
+        }
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--na-text-secondary);
+        }
+        li b {
+            color: var(--na-text-primary);
+        }
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .benefit-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .table-custom th, .table-custom td {
+            border: 1px solid #E0E0E0;
+            padding: 1rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .table-custom th {
+            background: linear-gradient(135deg, var(--na-primary) 0%, var(--na-secondary) 100%);
+            color: var(--na-background);
+            font-weight: 600;
+        }
+        .table-custom tr:nth-child(even) {
+            background-color: var(--na-surface);
+        }
+        .table-custom tr:hover {
+            background-color: #E3F2FD;
+        }
+        .module-details {
+            font-size: 0.9rem;
+            color: var(--na-text-secondary);
+        }
+        .module-title {
+            font-weight: 700;
+            color: var(--na-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .contact-info {
+            background: linear-gradient(135deg, var(--na-primary) 0%, var(--na-secondary) 90%);
+            color: var(--na-background);
+            text-align: center;
+            padding: 3rem;
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+        .contact-info > * {
+            position: relative;
+            z-index: 1;
+        }
+        .header-title {
+            background: linear-gradient(135deg, var(--na-primary) 0%, var(--na-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-subtitle {
+            color: var(--na-secondary);
+        }
+        .header-description {
+            color: var(--na-text-secondary);
+        }
+        .price-highlight {
+            color: var(--na-secondary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        .free-item {
+            color: var(--na-accent);
+            font-weight: 600;
+        }
+        .info-table td:first-child {
+            color: var(--na-primary);
+            font-weight: 600;
+        }
+        .cost-table td:last-child {
+            color: var(--na-text-primary);
+        }
+        .cost-table .total-row {
+            background: linear-gradient(135deg, var(--na-surface) 0%, #E3F2FD 100%);
+            border-top: 2px solid var(--na-primary);
+        }
+        .cost-table .total-row td {
+            color: var(--na-primary);
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, var(--na-surface) 0%, #E8F5E8 100%);
+            border-left: 4px solid var(--na-accent);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        .accent-text {
+            color: var(--na-accent);
+        }
+        .secondary-text {
+            color: var(--na-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="text-center my-8 md:my-12">
+            <!-- Logo NextAcademy -->
+            <div class="mb-8">
+                <img src="https://nextacademy.ai/wp-content/uploads/2024/11/cropped-web-logo2.png" alt="NextAcademy Logo" class="mx-auto h-16 md:h-20 w-auto mb-4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <!-- Fallback logo nếu không tải được -->
+                <div class="mx-auto h-16 md:h-20 w-48 md:w-64 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg md:text-xl" style="display: none;">
+                    NextAcademy
+                </div>
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold header-title">ĐỀ XUẤT CHƯƠNG TRÌNH ĐÀO TẠO</h1>
+            <p class="text-2xl md:text-3xl header-subtitle mt-2">ỨNG DỤNG TRÍ TUỆ NHÂN TẠO TRONG CƠ QUAN NHÀ NƯỚC</p>
+            <p class="text-lg header-description mt-4 font-semibold">NÂNG CAO HIỆU SUẤT CÔNG VỤ - 01 NGÀY</p>
+        </header>
+
+        <!-- Giới thiệu -->
+        <div class="card">
+            <h2 class="section-title">GIỚI THIỆU</h2>
+            <p class="mb-6">Trí tuệ nhân tạo (AI) đang trở thành công cụ quan trọng trong chuyển đổi số khu vực công, giúp cải thiện hiệu quả hoạt động, tăng cường tính minh bạch và nâng cao chất lượng phục vụ người dân.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Ý nghĩa của AI trong cơ quan nhà nước</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><b>Tiết kiệm thời gian:</b> Tự động hóa các công việc lặp đi lặp lại, giúp công chức tập trung vào công việc có giá trị cao hơn.</li>
+                        <li><b>Hỗ trợ quyết định:</b> Phân tích dữ liệu nhanh chóng giúp lãnh đạo đưa ra quyết định điều hành hiệu quả.</li>
+                        <li><b>Trợ lý ảo thông minh:</b> Hỗ trợ cán bộ công chức 24/7 trong xử lý công việc.</li>
+                        <li><b>Nâng cao dịch vụ công:</b> Cải thiện chất lượng phục vụ người dân, tăng sự hài lòng.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-2">Tác động của AI đối với Cơ quan Nhà nước</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><b>Tự động hóa quy trình:</b> Giảm thời gian xử lý hồ sơ, thủ tục hành chính.</li>
+                        <li><b>Minh bạch hóa:</b> Tăng cường tính công khai, minh bạch trong hoạt động công vụ.</li>
+                        <li><b>Tối ưu nguồn lực:</b> Sử dụng hiệu quả nguồn lực và ngân sách nhà nước.</li>
+                        <li><b>Chuyển đổi số:</b> Thúc đẩy quá trình chuyển đổi số toàn diện trong khu vực công.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bối cảnh -->
+        <div class="card">
+            <h2 class="section-title">BỐI CẢNH ĐỀ XUẤT</h2>
+            <p class="mb-4">Các cơ quan nhà nước Việt Nam đang đối mặt với nhiều thách thức trong quá trình chuyển đổi số:</p>
+            <ul class="list-disc pl-5 space-y-2 mb-6">
+                <li><b>Khối lượng công việc</b> và thông tin ngày càng tăng, yêu cầu xử lý nhanh chóng</li>
+                <li><b>Thiếu nhân lực</b> có chuyên môn về công nghệ số và AI trong cơ quan nhà nước</li>
+                <li><b>Yêu cầu</b> về tốc độ và chất lượng phục vụ người dân ngày càng cao</li>
+                <li><b>Nhu cầu tối ưu hóa</b> nguồn lực và chi phí trong hoạt động công vụ</li>
+                <li><b>Cơ sở hạ tầng</b> công nghệ chưa đồng bộ, dữ liệu phân tán, thiếu liên kết</li>
+            </ul>
+            <div class="highlight-box">
+                <p><b>Khóa học được thiết kế đặc biệt để:</b></p>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Giúp cán bộ, công chức nhanh chóng làm chủ công nghệ AI</li>
+                    <li>Áp dụng ngay vào công việc hàng ngày tại cơ quan</li>
+                    <li>Không yêu cầu kiến thức lập trình hay kỹ thuật</li>
+                    <li>Tập trung vào các ứng dụng thực tế trong công vụ</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Mục tiêu & Lợi ích -->
+        <div class="card">
+             <h2 class="section-title">MỤC TIÊU & LỢI ÍCH</h2>
+             <div class="benefit-grid">
+                <div>
+                    <h3>Mục tiêu khóa học</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Hiểu rõ về <b>AI, Generative AI</b> và các ứng dụng cụ thể trong công vụ</li>
+                        <li>Sử dụng thành thạo các công cụ AI: <b>ChatGPT, Gemini, Copilot</b></li>
+                        <li>Viết <b>prompt hiệu quả</b> để tạo văn bản hành chính, báo cáo, quyết định</li>
+                        <li><b>Phân tích dữ liệu</b> và rút ra thông tin giá trị phục vụ quản lý</li>
+                        <li>Tạo <b>báo cáo chuyên nghiệp</b> với biểu đồ, hình ảnh minh họa</li>
+                        <li>Xây dựng <b>trợ lý AI cá nhân</b> phục vụ nhiệm vụ chuyên môn</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Lợi ích của đào tạo</h3>
+                    <h4 class="font-semibold mt-4 mb-2">Cho Cơ quan Nhà nước:</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                        <li><b>Nâng cao hiệu quả</b> công vụ, giảm thời gian xử lý hồ sơ, thủ tục</li>
+                        <li><b>Tăng năng suất</b> làm việc của cán bộ, công chức thông qua tự động hóa</li>
+                        <li><b>Cải thiện chất lượng</b> dịch vụ công, tăng cường sự hài lòng của người dân</li>
+                        <li><b>Tối ưu hóa</b> nguồn lực và chi phí hoạt động</li>
+                        <li><b>Nâng cao năng lực</b> quản trị, ra quyết định dựa trên phân tích dữ liệu</li>
+                    </ul>
+                     <h4 class="font-semibold mt-4 mb-2">Cho Cán bộ, Công chức:</h4>
+                     <ul class="list-disc pl-5 space-y-1 text-sm">
+                        <li>Giải phóng thời gian khỏi các công việc lặp đi lặp lại</li>
+                        <li>Nâng cao năng lực chuyên môn, phát triển kỹ năng số</li>
+                        <li>Cải thiện chất lượng công việc thông qua hỗ trợ của AI</li>
+                        <li>Tự tin ứng dụng công nghệ mới vào thực tiễn công vụ</li>
+                    </ul>
+                </div>
+             </div>
+        </div>
+
+        <!-- Thông tin tổng quan -->
+        <div class="card">
+            <h2 class="section-title">THÔNG TIN TỔNG QUAN</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left info-table">
+                    <tbody>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Thời lượng</td><td class="py-3">1 ngày (2 buổi x 3 giờ)</td></tr>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Số lượng học viên</td><td class="py-3">20 - 30 người/khóa</td></tr>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Hình thức</td><td class="py-3">Đào tạo trực tiếp tại cơ quan</td></tr>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Giảng viên</td><td class="py-3">Bùi Minh Nhật - Chuyên gia đào tạo và ứng dụng AI nâng cao hiệu suất</td></tr>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Công cụ chính</td><td class="py-3">ChatGPT, Gemini, Copilot, Gamma</td></tr>
+                        <tr class="border-b"><td class="py-3 pr-4 font-semibold">Đối tượng</td><td class="py-3">Cán bộ lãnh đạo, công chức, viên chức các phòng ban</td></tr>
+                        <tr><td class="py-3 pr-4 font-semibold">Chi phí</td><td class="py-3 price-highlight">30,000,000 đồng/khóa</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Nội dung khóa học -->
+        <div class="card">
+            <h2 class="section-title">NỘI DUNG KHÓA HỌC</h2>
+            <div class="highlight-box">
+                <p>Chương trình được thiết kế theo chuẩn đào tạo có tính thực hành cao, phù hợp với đặc thù công việc của cơ quan nhà nước. Mỗi module đều có bài tập thực hành để học viên áp dụng ngay kiến thức vừa học.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="table-custom mb-6">
+                    <thead>
+                        <tr>
+                            <th class="w-1/3">Module</th>
+                            <th>Nội dung chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 1: NỀN TẢNG CƠ BẢN VỀ AI</strong>
+                                <p class="module-details">🕒 45 phút | 📚 Quiz + Demo trực tiếp</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Phân biệt AI truyền thống vs Generative AI:</b> Hiểu rõ bản chất và khác biệt</li>
+                                    <li><b>Ứng dụng thực tế của Generative AI:</b> Các công việc AI có thể hỗ trợ trong cơ quan</li>
+                                    <li><b>Demo ChatGPT, Copilot, Gemini:</b> Thao tác cơ bản với các công cụ</li>
+                                    <li><b>Nguyên tắc bảo mật quan trọng:</b> Không nhập thông tin mật, nhạy cảm</li>
+                                    <li><b>Kiểm chứng kết quả AI:</b> Tránh "ảo giác" và sai sót</li>
+                                    <li><b>Gợi ý ứng dụng:</b> AI trong từng vị trí công tác cụ thể</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 2: CÔNG THỨC VIẾT PROMPT & TẠO VĂN BẢN</strong>
+                                <p class="module-details">🕒 90 phút | 📚 Giảng giải + Thực hành</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Hiểu về Prompt:</b> Yếu tố quyết định 80% chất lượng kết quả</li>
+                                    <li><b>Công thức RTIO:</b> Role (Vai trò) - Task (Nhiệm vụ) - Input (Đầu vào) - Output (Đầu ra)</li>
+                                    <li><b>Thực hành tạo văn bản:</b>
+                                        <ul class="pl-5 mt-1">
+                                            <li>• Tờ trình, báo cáo công tác</li>
+                                            <li>• Quyết định, công văn hành chính</li>
+                                            <li>• Email công vụ chuyên nghiệp</li>
+                                            <li>• Quy trình xử lý công việc 5-7 bước</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>So sánh prompt tốt vs kém:</b> Rút kinh nghiệm từ ví dụ thực tế</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 3: PHÂN TÍCH DỮ LIỆU VỚI AI</strong>
+                                <p class="module-details">🕒 90 phút | 📚 Demo + Thực hành</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Loại dữ liệu:</b> Có cấu trúc (Excel/CSV) và phi cấu trúc (text/văn bản)</li>
+                                    <li><b>Demo:</b> Upload file dữ liệu → AI phân tích xu hướng, tìm insight</li>
+                                    <li><b>Thực hành theo phòng ban:</b>
+                                        <ul class="pl-5 mt-1">
+                                            <li>• Tổ chức - Hành chính: Phân tích nhân sự, đánh giá hiệu quả</li>
+                                            <li>• Kế hoạch - Tài chính: Phân tích ngân sách, chi phí, dự toán</li>
+                                            <li>• Nghiệp vụ chuyên môn: Dữ liệu thống kê, báo cáo định kỳ</li>
+                                            <li>• Thanh tra - Kiểm tra: Phát hiện bất thường trong dữ liệu</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 4: TẠO BÁO CÁO CHUYÊN NGHIỆP</strong>
+                                <p class="module-details">🕒 90 phút | 📚 Demo + Thực hành</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Xây dựng cấu trúc báo cáo:</b> Logic, dễ hiểu, chuyên nghiệp</li>
+                                    <li><b>Trực quan hóa dữ liệu:</b> Biểu đồ, bảng thống kê tự động</li>
+                                    <li><b>Tạo hình ảnh minh họa:</b> Hình ảnh chuyên nghiệp cho báo cáo</li>
+                                    <li><b>Tùy chỉnh theme:</b> Phù hợp với bộ nhận diện cơ quan</li>
+                                    <li><b>Thực hành:</b> Tạo báo cáo công tác quý/năm hoàn chỉnh</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 5: HỖ TRỢ RA QUYẾT ĐỊNH & LẬP KẾ HOẠCH</strong>
+                                <p class="module-details">🕒 120 phút | 📚 Tình huống + Thực hành</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Nghiên cứu thông tin:</b> So sánh phương án, đánh giá rủi ro</li>
+                                    <li><b>Phân tích SWOT:</b> Điểm mạnh, yếu, cơ hội, thách thức của dự án</li>
+                                    <li><b>Lập kế hoạch với SMART:</b> Mục tiêu cụ thể, đo lường được</li>
+                                    <li><b>Phân bổ nguồn lực:</b> Mô hình RACI (Responsible, Accountable, Consulted, Informed)</li>
+                                    <li><b>Thực hành:</b> Lập kế hoạch triển khai 01 nhiệm vụ cụ thể</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong class="module-title">MODULE 6: XÂY DỰNG TRỢ LÝ AI CÁ NHÂN</strong>
+                                <p class="module-details">🕒 120 phút | 📚 Workshop + Testing</p>
+                            </td>
+                            <td>
+                                <ul class="list-disc pl-5">
+                                    <li><b>Phân biệt:</b> AI Assistant vs AI Automation vs AI Agent</li>
+                                    <li><b>Kỹ thuật Few-shot learning:</b> Cung cấp mẫu để AI học theo</li>
+                                    <li><b>Thiết kế trợ lý:</b> Xác định công việc lặp lại cần tự động hóa</li>
+                                    <li><b>Thực hành theo vị trí:</b>
+                                        <ul class="pl-5 mt-1">
+                                            <li>• Trợ lý soạn thảo văn bản hành chính</li>
+                                            <li>• Trợ lý phân tích và tổng hợp báo cáo</li>
+                                            <li>• Trợ lý tra cứu chính sách, văn bản pháp luật</li>
+                                            <li>• Trợ lý lập kế hoạch và theo dõi tiến độ</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Testing:</b> Thử nghiệm với 3-5 tình huống thực tế</li>
+                                    <li><b>Kết quả:</b> Mỗi học viên có 01 trợ lý AI sử dụng được ngay</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ứng dụng sau khóa học -->
+        <div class="card">
+            <h2 class="section-title">ỨNG DỤNG SAU KHÓA HỌC</h2>
+            <div class="overflow-x-auto">
+                <table class="table-custom">
+                    <thead>
+                        <tr>
+                            <th class="w-1/3">Lĩnh vực ứng dụng</th>
+                            <th>Ví dụ cụ thể</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Văn phòng - Hành chính</strong></td>
+                            <td>Soạn thảo tờ trình, báo cáo, công văn nhanh chóng; tổng hợp ý kiến từ nhiều nguồn; tạo mẫu văn bản chuẩn hóa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tổ chức - Cán bộ</strong></td>
+                            <td>Phân tích dữ liệu nhân sự, dự báo nhu cầu tuyển dụng; đánh giá hiệu quả công tác cán bộ; lập kế hoạch đào tạo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kế hoạch - Tài chính</strong></td>
+                            <td>Phân tích ngân sách, dự toán chi phí; so sánh thực hiện vs kế hoạch; dự báo xu hướng tài chính; tạo báo cáo trực quan</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thanh tra - Kiểm tra</strong></td>
+                            <td>Phát hiện dấu hiệu bất thường trong dữ liệu; phân tích hồ sơ, tài liệu phức tạp; tạo báo cáo thanh tra chi tiết</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nghiệp vụ chuyên môn</strong></td>
+                            <td>Nghiên cứu chính sách, văn bản pháp luật; tổng hợp thông tin từ nhiều nguồn; xây dựng đề xuất, kiến nghị</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dịch vụ công trực tuyến</strong></td>
+                            <td>Thiết kế chatbot tư vấn cho người dân; tự động trả lời câu hỏi thường gặp; hướng dẫn thủ tục hành chính</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Truyền thông - Đối ngoại</strong></td>
+                            <td>Tạo nội dung truyền thông; thiết kế tài liệu giới thiệu; dịch thuật tài liệu đa ngôn ngữ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Chi phí -->
+        <div class="card">
+            <h2 class="section-title">CHI PHÍ ĐÀO TẠO</h2>
+            <div>
+                <h3>Bảng chi phí</h3>
+                <table class="w-full text-left cost-table">
+                    <tbody>
+                        <tr class="border-b"><td class="py-2">Chi phí đào tạo</td><td class="py-2 text-right">30,000,000đ</td></tr>
+                        <tr class="border-b"><td class="py-2">Tài liệu học tập (tài liệu điện tử, template, ví dụ mẫu)</td><td class="py-2 text-right free-item">MIỄN PHÍ</td></tr>
+                        <tr class="border-b"><td class="py-2">Phí cấp chứng chỉ hoàn thành khóa học</td><td class="py-2 text-right free-item">MIỄN PHÍ</td></tr>
+                        <tr class="border-b"><td class="py-2">Hỗ trợ sau khóa học trong 30 ngày qua nhóm Zalo</td><td class="py-2 text-right free-item">MIỄN PHÍ</td></tr>
+                        <tr class="total-row">
+                            <td class="py-4 font-bold text-lg">TỔNG CHI PHÍ</td>
+                            <td class="py-4 font-bold text-lg text-right">30,000,000đ</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-sm text-gray-600 mt-4"><b>Ghi chú:</b> Chi phí chưa bao gồm VAT (10%) và các chi phí hậu cần như phòng học, thiết bị (do cơ quan cung cấp).</p>
+            </div>
+        </div>
+
+        <!-- Liên hệ -->
+        <div class="contact-info">
+            <h2 class="text-2xl font-bold mb-2">LIÊN HỆ ĐỂ ĐƯỢC TƯ VẤN CHI TIẾT</h2>
+            <p class="text-lg">Chương trình đào tạo AI chuyên sâu giúp cơ quan nhà nước khẳng định vị thế dẫn đầu trong kỷ nguyên số.</p>
+            <div class="mt-6">
+                <p><strong>NextAcademy</strong></p>
+                <p>📞 Hotline: 0888491591</p>
+                <p>📧 Email: support@nextacademy.ai</p>
+                <p>🌐 Website: https://nextacademy.ai</p>
+                <p>📍 Địa chỉ: 240 Nguyễn Đình Chính, Phường Phú Nhuận, TP. Hồ Chí Minh</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
